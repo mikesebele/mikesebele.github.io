@@ -1,0 +1,23 @@
+{
+    "nav" : [
+        {
+            "href":"/resume",
+            "title":"Resume"
+        },
+        {
+            "href":"",
+            "title":"LinkedIn"
+        },
+        {
+            "href":"https://twitter.com/robotgrapefruit",
+            "title":"Twitter"
+        },
+        {
+            "href":"mailto:mike.sebele@gmail.com",
+            "title":"Email"
+        }
+    ],
+    "projects": [
+        "icaria", "hrdvr", "vrplayin"
+    ]
+}

@@ -1,8 +1,15 @@
 <html>
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
 </head>
 <body>
-Hello World
+    <div w3-include-html="header.html"></div>
+    <div id="content"></div>
+    <div w3-include-html="footer.html"></div>
+    <script>
+        w3.includeHTML();
+    </script>
 </body>
-
 </html>
