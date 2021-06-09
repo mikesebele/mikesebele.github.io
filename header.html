@@ -1,42 +1,50 @@
 <div class="w3-panel" style="height:100px; max-width:1200px !important; margin-left: auto; margin-right: auto;">       
     <div class="w3-cell-row w3-mobile w3-hide-medium w3-hide-large w3-center">
-        <div class="w3-mobile w3-cell" style="width:100px">              
-            <img src="/static/avatar.png" style="max-height: 100px;"/>
-        </div>
-        <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
-            <div class="w3-container">
-                <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
-                <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
+        <a href="#home" onclick="LoadContent('/pages/home.html');">
+            <div class="w3-mobile w3-cell" style="width:100px">              
+                <img src="/static/avatar.png" style="max-height: 100px;"/>
             </div>
-        </div>    
+            <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
+                <div class="w3-container">
+                    <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
+                    <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
+                </div>
+            </div>    
+        </a>
         <div class="w3-mobile w3-text-theme w3-cell w3-cell-middle">         
             <div class="w3-center">
-                <span class="nav w3-container">
-                    <a href="#" class="">Resume</a>
-                    <a href="#" class="">LinkedIn</a>
-                    <a href="#" class="">GitHub</a>
-                    <a href="#" class="">Twitter</a>
-                    <a href="mailto:mike.sebele@gmail.com" class="">Email</a>
-                </span>
+                <div id="naviS" class="nav w3-container" w3-repeat="nav">
+                    <a href="{{href}}" onclick="{{click}}" class="">{{title}}</a>
+                </div>
             </div>
         </div>        
     </div>   
     <div class="w3-hide-small w3-cell-row w3-mobile">
-        <div class="w3-cell" style="width:100px">              
-            <img src="/static/avatar.png" style="max-height: 100px;"/>
-        </div>
-        <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
-            <div class="w3-container">
-                <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
-                <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
-                </div>
-        </div>    
-        <div class="w3-text-theme w3-cell w3-cell-middle w3-right nav">     
-                <a href="#" class="">Resume</a>
-                <a href="#" class="">LinkedIn</a>
-                <a href="#" class="">GitHub</a>
-                <a href="#" class="">Twitter</a>
-                <a href="mailto:mike.sebele@gmail.com" class="">Email</a>
-        </div>   
+        <a href="#home" onclick="LoadContent('/pages/home.html');" style="text-decoration: none;">
+            <div class="w3-cell" style="width:100px">              
+                <img src="/static/avatar.png" style="max-height: 100px;"/>
+            </div>
+            <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
+                <div class="w3-container">
+                    <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
+                    <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
+                    </div>
+            </div>   
+        </a> 
+        <div id="naviL" class="w3-text-theme w3-cell w3-cell-middle w3-right nav" w3-repeat="nav">     
+            <a href="{{href}}" onclick="{{click}}" class="">{{title}}</a>
+        </div>           
     </div>     
 </div>
+<script class="externalScript">            
+    var navs = document.getElementsByClassName("nav");
+    var i = navs.length;
+    while(i--){
+        var buttons = map.nav;
+        var innerHTML = "";
+        for(j = 0; j < buttons.length; j++){
+            innerHTML += "<a href=\"" + buttons[j].href + "\" onclick=\"" + buttons[j].click + "\">" + buttons[j].title + "</a>";
+        }
+        navs[i].innerHTML = innerHTML;
+    }
+</script>

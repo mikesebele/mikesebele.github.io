@@ -1,7 +1,7 @@
-{
+{    
     "nav" : [
         {
-            "href":"/resume",
+            "href":"/pages/resume.html",
             "title":"Resume"
         },
         {
@@ -17,7 +17,5 @@
             "title":"Email"
         }
     ],
-    "projects": [
-        "icaria", "hrdvr", "vrplayin"
-    ]
+    "projects": [ "icaria", "hrdvr", "vrplayin" ]
 }

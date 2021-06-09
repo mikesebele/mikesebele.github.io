@@ -12,7 +12,39 @@
         <div w3-include-html="footer.html"></div>
     </div>
     <script>
-        w3.includeHTML();
+        var map = 0;
+        var mapListeners = [];
+        w3.getHttpObject("/map.json", gotMap);
+        function gotMap(mapFile){
+            map = mapFile;
+            map.nav.forEach(element => {
+                if(element.href.startsWith("/")){
+                    element.click = "LoadContent('"+element.href+"');"
+                    element.href = "#";
+                }else{
+                    element.click = "";
+                }
+            });
+
+            mapListeners.forEach(element => {
+                element(map);
+            });
+
+            LoadContent("/pages/home.html");
+        }
+        function LoadContent(href){
+            document.getElementById("content").innerHTML = "<div w3-include-html=\"" + href + "\"></div>"
+            w3.includeHTML(RunLoadedScripts);
+        }
+        function RunLoadedScripts(){
+            var scripts = document.getElementsByClassName("externalScript");
+            var i = scripts.length;
+            while(i-- > 0){
+                var script = scripts[i];
+                script.classList = [];
+                eval(script.innerText);               
+            }
+        }
     </script>    
 </body>
 </html>
