@@ -7,36 +7,44 @@
 <body>
     <div w3-include-html="/theme/theme-light.html"></div>
     <div class="page">
-        <div w3-include-html="header.html"></div>
-        <div id="content"></div>
-        <div w3-include-html="footer.html"></div>
+        <div w3-include-html="header.html" class="w3-container w3-mobile"></div>
+        <div id="content" class="w3-container w3-mobile" style="max-width: 1000px; margin:auto;"></div>
+        <div w3-include-html="footer.html" class="w3-container w3-mobile"></div>
     </div>
     <script>
         var map = 0;
-        var mapListeners = [];
         w3.getHttpObject("/map.json", gotMap);
-        function gotMap(mapFile){
+        function gotMap(mapFile){            
+            var hashSign = window.location.href.indexOf("/#");            
+            var page = "";
+            if(hashSign > 0){
+                page = window.location.href.substr(hashSign + 2);
+            } 
+
+            var pageLoaded = false;
             map = mapFile;
             map.nav.forEach(element => {
+                if(element.title == page){
+                    LoadContent(element.href);
+                    pageLoaded = true;
+                }
                 if(element.href.startsWith("/")){
                     element.click = "LoadContent('"+element.href+"');"
-                    element.href = "#";
+                    element.href = "#" + element.title;
                 }else{
                     element.click = "";
                 }
             });
 
-            mapListeners.forEach(element => {
-                element(map);
-            });
-
-            LoadContent("/pages/home.html");
+            if(!pageLoaded){
+                LoadContent("/pages/home.html");
+            }            
         }
         function LoadContent(href){
             document.getElementById("content").innerHTML = "<div w3-include-html=\"" + href + "\"></div>"
             w3.includeHTML(RunLoadedScripts);
         }
-        function RunLoadedScripts(){
+        function RunLoadedScripts(){            
             var scripts = document.getElementsByClassName("externalScript");
             var i = scripts.length;
             while(i-- > 0){

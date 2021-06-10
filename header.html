@@ -1,38 +1,35 @@
-<div class="w3-panel" style="height:100px; max-width:1200px !important; margin-left: auto; margin-right: auto;">       
+<div class="w3-panel w3-mobile" style="max-width:1200px !important; margin-left: auto; margin-right: auto;">       
     <div class="w3-cell-row w3-mobile w3-hide-medium w3-hide-large w3-center">
-        <a href="#home" onclick="LoadContent('/pages/home.html');">
-            <div class="w3-mobile w3-cell" style="width:100px">              
+        <div class="w3-cell w3-mobile" style="width:100px">
+            <a href="#home" onclick="LoadContent('/pages/home.html');">
                 <img src="/static/avatar.png" style="max-height: 100px;"/>
-            </div>
-            <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
-                <div class="w3-container">
-                    <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
-                    <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
-                </div>
-            </div>    
-        </a>
-        <div class="w3-mobile w3-text-theme w3-cell w3-cell-middle">         
+            </a>              
+        </div>
+        <div class="w3-cell w3-mobile w3-padding" style="width: auto;">
+            <a href="#home" onclick="LoadContent('/pages/home.html');" style="text-decoration: none;">
+                <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
+                <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
+            </a>
+        </div> 
+        <div class="w3-text-theme w3-cell w3-cell-middle w3-mobile">         
             <div class="w3-center">
-                <div id="naviS" class="nav w3-container" w3-repeat="nav">
-                    <a href="{{href}}" onclick="{{click}}" class="">{{title}}</a>
-                </div>
+                <div class="nav w3-container"></div>
             </div>
         </div>        
     </div>   
-    <div class="w3-hide-small w3-cell-row w3-mobile">
-        <a href="#home" onclick="LoadContent('/pages/home.html');" style="text-decoration: none;">
-            <div class="w3-cell" style="width:100px">              
-                <img src="/static/avatar.png" style="max-height: 100px;"/>
-            </div>
-            <div class="w3-cell w3-cell-middle w3-mobile" style="width: auto;">
-                <div class="w3-container">
-                    <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
-                    <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
-                    </div>
-            </div>   
-        </a> 
-        <div id="naviL" class="w3-text-theme w3-cell w3-cell-middle w3-right nav" w3-repeat="nav">     
-            <a href="{{href}}" onclick="{{click}}" class="">{{title}}</a>
+    <div class="w3-cell-row w3-mobile w3-hide-small">        
+        <div class="w3-cell w3-mobile" style="width:100px">
+            <a href="#home" onclick="LoadContent('/pages/home.html');">
+            <img src="/static/avatar.png" style="max-height: 100px;"/>
+            </a>              
+        </div>
+        <div class="w3-cell w3-padding" style="width: auto;">
+            <a href="#home" onclick="LoadContent('/pages/home.html');" style="text-decoration: none;">
+                <h1 class="w3-text-theme" style="margin: 0">MIKE SEBELE</h1>
+                <h4 style="color:#666; margin: 0">GAME DEVELOPER</h4>
+            </a>
+        </div>   
+        <div class="w3-text-theme w3-cell w3-cell-middle w3-right nav">                 
         </div>           
     </div>     
 </div>

@@ -1,3 +1,41 @@
-<header>
-    MIKE SEBELE
-</header>
+<div class="w3-row-padding w3-padding">	
+	<div class="w3-half">
+  		<div class="projectCard w3-card-2 w3-round-large w3-yellow w3-margin-top w3-" style="position:relative; overflow: hidden; height:400px">
+
+              <img src="/projects/icaria/Icaria.jpg" style="position:absolute; object-fit: cover; object-position: center center;  width: 100%; height:100%">
+            <div class="w3-container" style="height: 70%;"></div>
+            <div class="w3-container w3-cell-bottom w3-theme-light w3-text-theme" style="position:relative; padding: 1rem; height:30%; display: block;">
+              <h3>Wings of Icaria</h3>
+              <p>VR Flying Game</p>
+            </div>
+        </div>
+  	</div>
+    <div class="w3-half">
+  <div class="w3-container w3-card-2 w3-yellow w3-margin-top"><p>w3-card-2</p></div>
+  </div>
+    <div class="w3-half">
+  <div class="w3-container w3-card-4 w3-yellow w3-margin-top"><p>w3-card-4</p></div>
+  </div>
+    
+  </div>
+</div>
+<script class="externalScript">
+    window.onresize = onResize;
+    function onResize(){
+        var width = window.innerWidth;
+        var height = 420;
+        if(width > 900){
+            width = 900;
+        }
+        if(width <= 600){
+            height = width / 1.5;
+        }else{
+            height = width / 2.5;
+        }
+        var cards = document.getElementsByClassName("projectCard");
+        for(var i = 0; i < cards.length; i++){
+            cards[i].style.height = Math.trunc(height).toString() + 'px';
+        }
+    }
+    onResize();
+</script>
