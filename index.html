@@ -15,13 +15,13 @@
 
     <div id="components" style="display: none;">
         <div id="post-image">
-            <div class="w3-round-medium" style="text-align: left; position:relative; overflow: hidden; width: 100%; height:600px">
-                <img src="{{}}" style="position:absolute; width: 100%; height: 100%; object-fit: cover; object-position: center center;">
+            <div class="w3-container w3-round-medium" style="text-align: center;  position:relative; overflow: hidden; width: 100%; height:400px">
+                <img src="{{}}" style="height:100%; object-fit: cover; object-position: center center;">
             </div>
         </div>
         <div id="project-card">
             <div class="w3-half">
-                <div class="projectCard w3-card-2 w3-round-large w3-yellow w3-margin-top" style="position:relative; overflow: hidden; height:400px">           
+                <div class="projectCard w3-card-2 w3-round-large w3-yellow w3-margin-top" style="position:relative; overflow: hidden; height:300px">           
                 <a href="/#{{slug}}" style="text-decoration: none;">
                     <img src="{{cover}}" style="position:absolute; object-fit: cover; object-position: center center;  width: 100%; height:100%">                            
                     <div class="w3-container w3-theme-light w3-text-theme" style="width:100%; position:relative; object-fit: cover; padding: 1rem; height:auto; object-position: bottom center; opacity: 0.85;">
@@ -98,7 +98,7 @@
                     proj.data = Object.assign(proj.data, projectData);
                     projects.push(proj);                    
                     projects.sort((a,b)=>{
-                        return parseInt(a.data.sort) - parseInt(b.data.sort);
+                        return parseInt(b.data.order) - parseInt(a.data.order);
                     });
                     if(projects.length == map.projects.length){
                         map.projects = projects;

@@ -1,0 +1,10 @@
+{
+    "cover": "./Hero-1.jpg",
+    "order": 40000,
+    "date": "2019-2021",
+    "title": "The Book of Distance",
+    "client": "National Film Board of Canada",
+    "link": "nfb.ca/interactive/the_book_of_distance/",
+    "excerpt": "Award winning VR experience",
+    "areas": ["Unity","VR"]
+}
