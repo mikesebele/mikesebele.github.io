@@ -1,31 +1,23 @@
----
-cover: "./Glaze.jpg"
-order: 10000
-date: "2017"
-title: "VR Playin Home"
-client: "VNovus"
-link: "vrplayin.ca"
-excerpt: "The frontend system for the VR arcade VRPlayin."
-areas:
-  - Unity
-  - VR
----
 
 I had the pleasure of working with VNovus on their mission to open a VR experience center in downtown Toronto. VRPlayin Home is the user experience side of platform installed on each station at VRPlayin. It is built in Unity and works with the Steam VR API to present game selection to the customer and allow them to start and close games in a VR environment.  It also responds to a server back end that controls customer sessions.
 
 <div style="text-align:center">
-<div>{props.images["GlazeRibbons"]}</div>
+<div class="post-image">GlazeRibbons.png</div>
 
 The player learns about the presence of their hands in the VR environment by reaching out and touching the wands to pick them up.
 
 <hr />
 <br />
-<div>{props.images["GlazeChop"]}</div>
+<div class="post-image">GlazeChop.png</div>
 
 Motion controls are practiced with some log chopping. For this, I implemented mesh cutting with high performance in mind.
 <hr />
 <br />
-<div>{props.images["GlazeShoot"]}</div>
+<div class="post-image">GlazeShoot.png</div>
 
 More buttons on the controller are introduced; the trigger for shooting missiles, and the touch pad for changing their colour.
 </div>
+<script class="externalScript">
+  LoadImages()
+  AddProjectHeader();
+ </script>

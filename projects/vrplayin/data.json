@@ -1,0 +1,10 @@
+{
+    "cover": "./Glaze.jpg",
+    "order": 10000,
+    "date": "2017",
+    "title": "VR Playin Home",
+    "client": "VNovus",
+    "link": "vrplayin.ca",
+    "excerpt": "Customer frontend for VR arcade",
+    "areas": ["Unity","VR"]
+}

@@ -1,0 +1,10 @@
+{
+    "cover": "./Skydome.jpg",
+    "order": 20000,
+    "date": "2018",
+    "title": "Home Run Derby VR",
+    "client": "Little Guy Games / MLB",
+    "link": "littleguygames.com/project/home-run-derby/",
+    "excerpt": "VR baseball game",
+    "areas":["Unity", "VR"]
+}

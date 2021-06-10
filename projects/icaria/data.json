@@ -1,0 +1,13 @@
+{
+    "cover": "Icaria.jpg",
+    "order": 30000,
+    "date": "2018-2019",
+    "title": "Wings of Icaria",
+    "client": "Little Guy Games",
+    "link": "littleguygames.com/project/wings-of-icaria/",
+    "excerpt": "VR flying game",
+    "areas":[
+        "Unity",
+        "VR"
+    ]
+}

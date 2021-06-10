@@ -8,19 +8,64 @@
     <div w3-include-html="/theme/theme-light.html"></div>
     <div class="page">
         <div w3-include-html="header.html" class="w3-container w3-mobile"></div>
-        <div id="content" class="w3-container w3-mobile" style="max-width: 1000px; margin:auto;"></div>
+        <div id="content" class="w3-container w3-mobile w3-text-theme" style="max-width: 1000px; margin:auto;"></div>
         <div w3-include-html="footer.html" class="w3-container w3-mobile"></div>
     </div>
+
+
+    <div id="components" style="display: none;">
+        <div id="post-image">
+            <div class="w3-round-medium" style="text-align: left; position:relative; overflow: hidden; width: 100%; height:600px">
+                <img src="{{}}" style="position:absolute; width: 100%; height: 100%; object-fit: cover; object-position: center center;">
+            </div>
+        </div>
+        <div id="project-card">
+            <div class="w3-half">
+                <div class="projectCard w3-card-2 w3-round-large w3-yellow w3-margin-top" style="position:relative; overflow: hidden; height:400px">           
+                <a href="/#{{slug}}" onclick="LoadProject('{{slug}}');" style="text-decoration: none;">
+                    <img src="{{cover}}" style="position:absolute; object-fit: cover; object-position: center center;  width: 100%; height:100%">                            
+                    <div class="w3-container w3-theme-light w3-text-theme" style="width:100%; position:relative; object-fit: cover; padding: 1rem; height:auto; object-position: bottom center; opacity: 0.85;">
+                        <div class="w3-cell-row">
+                            <div class="w3-container w3-cell">
+                                <h3>{{title}}</h3>
+                                <p>{{excerpt}}</p>  
+                            </div>
+                            <div class="w3-container w3-cell-middle w3-right-align">
+                                <p>
+                                {{date}}<br/>{{areas}}    
+                                </p>
+                            </div>
+                        </div>                  
+                    </div>
+                </a>
+            </div>
+            </div>
+        </div>
+        <div id="project-header">
+            <div class="w3-container">
+            <h2>{{title}}</h2>
+            </div>
+            <div class="w3-cell-row w3-row-padding">
+                <div class="w3-cell w3-center">{{title}}</div>
+                <div class="w3-cell w3-center">{{link}}</div>
+                <div class="w3-cell w3-center">{{date}}</div>
+                <div class="w3-cell w3-center">{{areas}}</div>
+            </div>
+            <br />
+            <hr>
+        </div>
+    </div>
     <script>
-        var map = 0;
+        var map = {
+        }
+
         w3.getHttpObject("/map.json", gotMap);
         function gotMap(mapFile){            
             var hashSign = window.location.href.indexOf("/#");            
             var page = "";
             if(hashSign > 0){
                 page = window.location.href.substr(hashSign + 2);
-            } 
-
+            }             
             var pageLoaded = false;
             map = mapFile;
             map.nav.forEach(element => {
@@ -36,9 +81,87 @@
                 }
             });
 
+            map.proj = {};
+            map.image = function(fileName){
+                var img = document.getElementById("post-image").innerHTML;
+                return img.replace("{{}}", map.proj.path + "/" + fileName);
+            }
+            map.card = function(project){
+                return ProjectDataDisplay("project-card", project);
+            }
+            var slugs = map.projects;
+            var projects = [];      
+            map.projects = projects;
+            slugs.forEach(element =>{
+                var path = "/projects/" + element;
+                var proj = {
+                    path: path,                 
+                    slug: element,
+                    data: {
+                        cover: "x",
+                        order: 0,
+                        date: "2018-2019",
+                        title: "Untitled Project",
+                        client: "Unknown",
+                        link: "mikesebele.net",
+                        excerpt: "",
+                        areas:[]
+                    }
+                };
+                w3.getHttpObject(path + "/data.json", (projectData)=>{
+                    proj.data = Object.assign(proj.data, projectData);
+                    projects.push(proj);                    
+                    projects.sort((a,b)=>{
+                        return parseInt(a.data.sort) - parseInt(b.data.sort);
+                    });
+                    if(element == page){
+                        LoadProject(element)
+                        pageLoaded = true;
+                    }
+                    if(projects.length == map.projects.length){
+                        map.projects = projects;
+                        DataLoaded(pageLoaded);
+                    }
+                });
+            });           
+        }
+
+        function DataLoaded(pageLoaded){                                
             if(!pageLoaded){
                 LoadContent("/pages/home.html");
-            }            
+            }    
+        }
+        function LoadProject(slug){
+            for(var i = 0; i < map.projects.length;i++){
+                var project = map.projects[i];
+                if(project.slug == slug){
+                    map.proj = project;
+                    LoadContent(project.path + "/index.html");
+                    return;
+                }
+            }
+        }
+        function ProjectDataDisplay(elementID, project){
+            var c = document.getElementById(elementID).innerHTML;
+            c = c.replace(/\{\{slug\}\}/g, project.slug);
+            c = c.replace(/\{\{title\}\}/g, project.data.title);
+            c = c.replace(/\{\{date\}\}/g, project.data.date);
+            c = c.replace(/\{\{excerpt\}\}/g, project.data.excerpt);
+            c = c.replace(/\{\{areas\}\}/g, project.data.areas.toString().replace(/,/,", "));
+            c = c.replace(/\{\{cover\}\}/g, project.path + "/" + project.data.cover);
+            c = c.replace(/{{link}}/g, "https://"+project.data.link);
+            return c;
+        }
+        function AddProjectHeader() {
+            var content = document.getElementById("content");
+            content.innerHTML = ProjectDataDisplay("project-header", map.proj) + content.innerHTML;
+        }
+        function LoadImages(){
+            var images = document.getElementsByClassName("post-image");
+            for(var i = 0; i < images.length; i++){
+                var image = images[i];
+                image.innerHTML = map.image(image.innerHTML);
+            }
         }
         function LoadContent(href){
             document.getElementById("content").innerHTML = "<div w3-include-html=\"" + href + "\"></div>"
@@ -51,7 +174,7 @@
                 var script = scripts[i];
                 script.classList = [];
                 eval(script.innerText);               
-            }
+            }           
         }
     </script>    
 </body>
